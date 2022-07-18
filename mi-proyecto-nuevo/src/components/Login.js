@@ -1,12 +1,13 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
-import useAuth from './helpers/useAuth';
-import config from './helpers/config.json';
+import useAuth from '../helpers/useAuth';
+import config from '../helpers/config.json';
 
 const Login=() => {
 
 const {setAuth} = useAuth();
 let navigate = useNavigate();
+
 
 const changeButtonState = (button,enabled) => {
     if(enabled){
@@ -47,7 +48,7 @@ const logger = async(event) => {
     const requestOptions = {
         method : 'POST',
         headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({nickname: user, password: password, operatorId: config.operatorId})
+        body: JSON.stringify({nickname: user, password: password, operatorId: config.operatorId}),
     }
     
     fetch(config.apiURL+"login", requestOptions).then((response) => {
@@ -101,7 +102,7 @@ return (
                     <p class="login-box-msg">Autentífiquese para iniciar sesión</p>
                     <form onSubmit = {logger}>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name ="username" placeholder="Apodo"/>
+                            <input type="text" className="form-control" name ="username" placeholder="Apodo"/>
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
